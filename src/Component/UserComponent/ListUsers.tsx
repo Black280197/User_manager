@@ -1,8 +1,11 @@
+import React from "react";
+import { User } from "./ContentUserPage";
+
 interface listUsersProps {
-  listUsers: { name: string; phoneNumber: string }[];
+  listUsers: User[];
 }
 
-export const ListUsers = ({ listUsers }: listUsersProps) => {
+export const ListUsers: React.FC<listUsersProps> = ({ listUsers }) => {
   return (
     <div>
       {/* Thanh tìm kiếm */}
@@ -78,7 +81,8 @@ export const ListUsers = ({ listUsers }: listUsersProps) => {
               {/* info */}
               <div className="flex-col w-1/2">
                 <div className="text-[20px] font-bold">
-                  Đặng Thị Chinh<span className="text-[15px]">(Chinhdt)</span>
+                  {user.name}
+                  <span className="text-[15px]">({user.userName})</span>
                 </div>
                 <div className="flex justify-left">
                   <img
@@ -86,25 +90,29 @@ export const ListUsers = ({ listUsers }: listUsersProps) => {
                     src="./icon/phoneCall.png"
                     alt="phone_icon"
                   />
-                  <div className="text-left pl-2">0122351515</div>
+                  <div className="text-left pl-2">{user.phoneNumber}</div>
                   <img
                     className="w-[20px] h-full ml-2"
                     src="./icon/mail.png"
                     alt="mail_icon"
                   />
-                  <div className="text-left pl-3">chinhdt@ows.com.vn</div>
+                  <div className="text-left pl-3">{user.email}</div>
                   <img
                     className="w-[20px] h-full ml-3"
                     src="./icon/user.png"
                     alt="people_icon"
                   />
-                  <div className="text-left pl-2">Nhân viên Sale</div>
+                  <div className="text-left pl-2">
+                    {user.position} {user.department}
+                  </div>
                 </div>
               </div>
               {/* quan ly */}
               <div className="flex-col w-1/3 justify-center">
                 <div className="text-center">Người quản lý</div>
-                <div className="text-center font-bold">SM Nghĩa Trần</div>
+                <div className="text-center font-bold">
+                  {user.directManager}
+                </div>
               </div>
               {/* toggle */}
               <div className="ml-auto mr-20">
